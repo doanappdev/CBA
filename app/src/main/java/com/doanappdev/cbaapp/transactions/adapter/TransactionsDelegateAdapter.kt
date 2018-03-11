@@ -22,7 +22,7 @@ class TransactionsDelegateAdapter : ViewTypeDelegateAdapter {
 
     inner class TransactionsViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_pending)) {
         fun bind(item: TransactionItem) = with(itemView) {
-            title.text = item.title
+            transaction.text = item.title
         }
     }
 }

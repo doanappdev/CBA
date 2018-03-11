@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.doanappdev.cbaapp.base.ViewItem
 import com.doanappdev.cbaapp.base.ViewTypeDelegateAdapter
+import com.doanappdev.cbaapp.models.ACCOUNT_INFO
 import com.doanappdev.cbaapp.models.PENDING
 
 class TransactionsAdapter(private val viewItems: List<ViewItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -12,6 +13,7 @@ class TransactionsAdapter(private val viewItems: List<ViewItem>) : RecyclerView.
     private var delegateAdapters = SparseArrayCompat<ViewTypeDelegateAdapter>()
 
     init {
+        delegateAdapters.put(ACCOUNT_INFO, AccountInfoDelegateAdapter())
         delegateAdapters.put(PENDING, TransactionsDelegateAdapter())
     }
 
