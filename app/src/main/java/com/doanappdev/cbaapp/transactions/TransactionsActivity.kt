@@ -6,22 +6,22 @@ import android.support.v4.content.ContextCompat
 import com.doanappdev.cbaapp.CBAApp
 import com.doanappdev.cbaapp.R
 import com.doanappdev.cbaapp.base.ViewItem
-import com.doanappdev.cbaapp.models.AccountInfoItem
 import com.doanappdev.cbaapp.transactions.adapter.TransactionsAdapter
-import com.doanappdev.cbaapp.models.TransactionItem
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import javax.inject.Inject
 
-class TransactionActivity : AppCompatActivity(), TransactionContract.View, AnkoLogger {
+class TransactionsActivity : AppCompatActivity(), TransactionsContract.View, AnkoLogger {
 
-    @Inject lateinit var 
+    @Inject lateinit var presenter: TransactionsContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         CBAApp.appComponent.inject(this)
+        presenter.attach(this)
+        //presenter.subscribe()
+        presenter.parseJson()
 
         toolbar.apply {
             title = "Account Details"
@@ -29,30 +29,11 @@ class TransactionActivity : AppCompatActivity(), TransactionContract.View, AnkoL
         }
 
         recyclerView.apply {
-            adapter = TransactionsAdapter(testData())
+            adapter = TransactionsAdapter(presenter.getViewItems())
         }
-
-
-        val json = getString(R.string.json_transactions)
-        info { "json: $json" }
-
     }
 
-    private fun testData() : List<ViewItem> {
-        return listOf(
-                AccountInfoItem("1000"),
-                TransactionItem("PENDING: PTAG Mount Street Sydney"),
-                TransactionItem("PENDING: PTAG Mount Street Sydney"),
-                TransactionItem("PENDING: PTAG Mount Street Sydney"),
-                TransactionItem("PENDING: PTAG Mount Street Sydney"),
-                TransactionItem("PENDING: PTAG Mount Street Sydney"),
-                TransactionItem("PENDING: PTAG Mount Street Sydney"),
-                TransactionItem("PENDING: PTAG Mount Street Sydney"),
-                TransactionItem("PENDING: PTAG Mount Street Sydney"),
-                TransactionItem("PENDING: PTAG Mount Street Sydney"),
-                TransactionItem("PENDING: PTAG Mount Street Sydney"),
-                TransactionItem("PENDING: PTAG Mount Street Sydney")
-        )
+    override fun setAdapter(items: List<ViewItem>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
 }

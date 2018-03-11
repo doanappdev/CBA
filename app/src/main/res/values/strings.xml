@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CBAApp</string>
+    <string name="days_ago">%d days ago</string>
 </resources>

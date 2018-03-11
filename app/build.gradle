@@ -1,14 +1,13 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.doanappdev.cbaapp"
-        minSdkVersion 15
+        minSdkVersion 26
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -37,11 +36,14 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
 
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
 
     implementation 'com.google.dagger:dagger:2.11'
     kapt 'com.google.dagger:dagger-compiler:2.11'
+    //implementation 'com.google.dagger:dagger:dagger-android-support:2.11'
+    //kapt 'com.google.dagger:dagger:dagger-android-processor:2.11'
     //provided 'org.glassfish:javax.annotation:10.0-b28'
 
 
